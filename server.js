@@ -49,12 +49,14 @@ app.post('/compress', upload.single('pdf'), async (req, res) => {
     }
 });
 
-app.get('/download', (req, res) => {
-    const file = path.join(__dirname, 'uploads', 'compressed.pdf');
-    res.download(file, 'compressed.pdf');
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;
+
